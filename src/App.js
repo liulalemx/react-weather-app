@@ -1,4 +1,10 @@
 import { useEffect } from "react";
+// Global Styles
+import GlobalStyle from "./components/GlobalStyle";
+// Components
+import Header from "./components/Header";
+import Search from "./components/Search";
+import Panel from "./components/Panel";
 
 function App() {
   const auth = "4830fbc71898dbf53713b1e4fff60c6a";
@@ -25,9 +31,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Weather App</h1>
-
-      <img src={`http://openweathermap.org/img/wn/04n@2x.png`} alt="" />
+      <GlobalStyle />
+      <Header />
+      <Search />
+      <Panel />
     </div>
   );
 }
