@@ -1,8 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 // Styled
 import styled from "styled-components";
 
-const Panel = ({ weather }) => {
+const Panel = ({ weather, unit, tempUnit, setTempUnit }) => {
+  useEffect(() => {
+    unit(tempUnit);
+  }, [tempUnit]);
+
   return (
     <StyledPanel>
       <div className="weather-info">
@@ -13,20 +18,35 @@ const Panel = ({ weather }) => {
         />
         <div className="current-weather">
           <h2>{weather.main.temp}</h2>
-          <button> &deg; C</button>
-          <button> &deg; F</button>
+          <button
+            onClick={() => setTempUnit("metric")}
+            className={`${tempUnit === "metric" ? "" : "notClicked"}`}
+          >
+            {" "}
+            &deg; C
+          </button>
+          <button
+            onClick={() => setTempUnit("imperial")}
+            className={`${tempUnit === "imperial" ? "" : "notClicked"}`}
+          >
+            {" "}
+            &deg; F
+          </button>
         </div>
         <div className="additional-info">
           <h4>Cloudiness: {weather.clouds.all}%</h4>
           <h4>Humidity: {weather.main.humidity}%</h4>
-          <h4>Wind Speed: {weather.wind.speed}m/s</h4>
+          <h4>
+            Wind Speed: {weather.wind.speed}{" "}
+            {tempUnit === "metric" ? "m/s" : "mi/h"}
+          </h4>
         </div>
       </div>
       <div className="location-info">
         <h3>
           {weather.name},{weather.sys.country}
         </h3>
-        <h4>Date</h4>
+        <h4>{weather.weather[0].main}</h4>
         <h4>{weather.weather[0].description}</h4>
       </div>
     </StyledPanel>
@@ -73,6 +93,10 @@ const StyledPanel = styled.div`
     h4 {
       text-align: right;
     }
+  }
+
+  .notClicked {
+    border: none;
   }
 `;
 

@@ -3,11 +3,21 @@ import { FaSearchLocation } from "react-icons/fa";
 // Styled
 import styled from "styled-components";
 
-const Search = () => {
+const Search = ({ searchValue, setSearchValue, searchCity }) => {
   return (
     <SearchForm>
-      <input type="text" className="search-input" />
-      <button type="submit" className="submit-btn">
+      <input
+        type="text"
+        className="search-input"
+        onInput={(e) => setSearchValue(e.target.value)}
+      />
+      <button
+        className="submit-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          searchValue ? searchCity() : alert("Insert a City name!");
+        }}
+      >
         <FaSearchLocation className="search-icon" />
       </button>
     </SearchForm>
