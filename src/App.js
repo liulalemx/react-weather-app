@@ -14,12 +14,14 @@ function App() {
   const [searchValue, setSearchValue] = useState("Addis Ababa");
   const [nearbyCities, setNearbyCities] = useState(null);
 
-  const auth = "4830fbc71898dbf53713b1e4fff60c6a";
+  const auth = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     const getWeather = async () => {
-      const weatherFromServer = await fetchWeather();
-      setWeather(weatherFromServer);
+      {
+        const weatherFromServer = await fetchWeather();
+        setWeather(weatherFromServer);
+      }
     };
     getWeather();
     NearbyCity();
@@ -27,21 +29,29 @@ function App() {
 
   // Fetch Data
   const fetchWeather = async () => {
-    const result = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${auth}`
-    );
-    const data = await result.json();
-    return data;
+    try {
+      const result = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${auth}`
+      );
+      const data = await result.json();
+      return data;
+    } catch (e) {
+      alert("Sorry, Failed to Fetch Data. :(");
+    }
   };
 
   //Fetch Nearby city data
   const NearbyCity = async () => {
-    const weatherFromServer = await fetchWeather();
-    const result = await fetch(
-      `http://api.openweathermap.org/data/2.5/find?lat=${weatherFromServer.coord.lat}&lon=${weatherFromServer.coord.lon}&cnt=5&units=${tempUnit}&appid=${auth}`
-    );
-    const data = await result.json();
-    setNearbyCities(data);
+    try {
+      const weatherFromServer = await fetchWeather();
+      const result = await fetch(
+        `http://api.openweathermap.org/data/2.5/find?lat=${weatherFromServer.coord.lat}&lon=${weatherFromServer.coord.lon}&cnt=5&units=${tempUnit}&appid=${auth}`
+      );
+      const data = await result.json();
+      setNearbyCities(data);
+    } catch (e) {
+      alert("Sorry, Failed to Fetch Data. :(");
+    }
   };
 
   //Search City
