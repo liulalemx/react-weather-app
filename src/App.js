@@ -25,6 +25,7 @@ function App() {
     };
     getWeather();
     NearbyCity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetch Data
