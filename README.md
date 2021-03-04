@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository.
 1. Install the required packages.
-1. Head to [OpenWeatherMap](https://nodejs.org/en/) and get an API key.
+1. Head to [OpenWeatherMap](https://openweathermap.org/api) and get an API key.
 1. Assing the value of the API key to the auth variable in `./react-weather-app/src/App.js`.
 1. Run the project.
 
