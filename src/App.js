@@ -14,7 +14,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("Addis Ababa");
   const [nearbyCities, setNearbyCities] = useState(null);
 
-  const auth = process.env.REACT_APP_API_KEY;
+  const auth = process.env.REACT_APP_API_KEY; //Replace API key here
 
   useEffect(() => {
     const getWeather = async () => {
