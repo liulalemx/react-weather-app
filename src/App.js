@@ -18,10 +18,8 @@ function App() {
 
   useEffect(() => {
     const getWeather = async () => {
-      {
-        const weatherFromServer = await fetchWeather();
-        setWeather(weatherFromServer);
-      }
+      const weatherFromServer = await fetchWeather();
+      setWeather(weatherFromServer);
     };
     getWeather();
     NearbyCity();

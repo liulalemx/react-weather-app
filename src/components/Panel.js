@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Panel = ({ weather, unit, tempUnit, setTempUnit }) => {
   useEffect(() => {
     unit(tempUnit);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tempUnit]);
 
   return (
